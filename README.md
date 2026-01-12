@@ -67,9 +67,55 @@ make
   ./bmp-processor recover card.raw
   ```
 
+## Visualizations & Analysis
+
+The project includes both terminal-based and graphical visualization tools to analyze BMP data.
+
+### 1. Terminal Metadata Visualization
+Use the `info` command to see a detailed, color-coded breakdown of the BMP file structure:
+```bash
+./bmp-processor info input.bmp
+```
+**Example Output:**
+```text
+=== BMP FILE INFORMATION: input.bmp ===
+FILE HEADER:
+  Type:          4d42 (BM - Windows Bitmap)
+  File Size:     1440054 bytes
+  Offset:        54 bytes
+
+INFO HEADER:
+  Size:          40 bytes
+  Dimensions:    800 x 600 (W x H)
+  Bit Count:     24 bits/pixel
+  Image Size:    1440000 bytes
+================================================
+```
+
+### 2. Color Distribution Analysis
+A Python script is provided in `scripts/analyze_colors.py` to generate histograms of RGB intensity.
+
+**Usage:**
+```bash
+python scripts/analyze_colors.py input.bmp
+```
+This will generate a `color_analysis.png` showing the frequency of each color value (0-255).
+
+### 3. Image Transformation (Demo)
+The `filter-red` command transforms specific pixel values. Below is a conceptual representation of the pixel-level modification:
+
+| Original State | Transformation | Filtered State |
+| :--- | :---: | :--- |
+| ![Original](docs/images/bmp_demo_original.png) | `RGB(255,0,0) -> RGB(255,255,255)` | ![Filtered](docs/images/bmp_demo_filtered.png) |
+
 ## Development
 
-The project is structured to be modular. BMP logic is isolated in `src/bmp_utils.c` and can be easily extended with new filters or transformations.
+The project is designed to be highly modular. Core logic is isolated in `src/bmp_utils.c`, while `include/bmp.h` contains standard-compliant BMP structure definitions.
+
+**To add a new filter:**
+1. Define the function in `include/bmp_utils.h`.
+2. Implement the pixel-interation logic in `src/bmp_utils.c`.
+3. Add a corresponding command in `src/main.c`.
 
 ## License
 

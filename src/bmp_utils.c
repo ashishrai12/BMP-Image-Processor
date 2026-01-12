@@ -192,3 +192,38 @@ int recover_jpegs(const char* infile) {
     fclose(filer);
     return 0;
 }
+
+int bmp_info(const char* infile) {
+    FILE* inptr = fopen(infile, "rb");
+    if (inptr == NULL) {
+        printf("Could not open %s\n", infile);
+        return 2;
+    }
+
+    BITMAPFILEHEADER bf;
+    fread(&bf, sizeof(BITMAPFILEHEADER), 1, inptr);
+
+    BITMAPINFOHEADER bi;
+    fread(&bi, sizeof(BITMAPINFOHEADER), 1, inptr);
+
+    fclose(inptr);
+
+    printf("\n\033[1;36m=== BMP FILE INFORMATION: %s ===\033[0m\n", infile);
+    printf("\033[1;33mFILE HEADER:\033[0m\n");
+    printf("  Type:          %04x (%s)\n", bf.bfType, (bf.bfType == 0x4d42 ? "BM - Windows Bitmap" : "Unknown"));
+    printf("  File Size:     %u bytes\n", bf.bfSize);
+    printf("  Offset:        %u bytes\n", bf.bfOffBits);
+
+    printf("\n\033[1;33mINFO HEADER:\033[0m\n");
+    printf("  Size:          %u bytes\n", bi.biSize);
+    printf("  Dimensions:    %d x %d (W x H)\n", bi.biWidth, bi.biHeight);
+    printf("  Planes:        %u\n", bi.biPlanes);
+    printf("  Bit Count:     %u bits/pixel\n", bi.biBitCount);
+    printf("  Compression:   %u\n", bi.biCompression);
+    printf("  Image Size:    %u bytes\n", bi.biSizeImage);
+    printf("  X Pels/Meter:  %d\n", bi.biXPelsPerMeter);
+    printf("  Y Pels/Meter:  %d\n", bi.biYPelsPerMeter);
+    printf("\033[1;36m================================================\033[0m\n\n");
+
+    return 0;
+}

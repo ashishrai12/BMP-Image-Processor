@@ -8,5 +8,6 @@ int bmp_copy(const char* infile, const char* outfile);
 int bmp_resize(const char* infile, const char* outfile, int factor);
 int bmp_filter_red(const char* infile, const char* outfile);
 int recover_jpegs(const char* infile);
+int bmp_info(const char* infile);
 
 #endif // BMP_UTILS_H
