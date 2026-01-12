@@ -1,0 +1,20 @@
+# Binaries
+bmp-processor
+*.exe
+*.o
+*.obj
+
+# CMake
+/build/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+CTestTestfile.cmake
+Makefile
+!/Makefile
+
+# Output files from tests/usage
+*.bmp
+!examples/*.bmp
+00*.jpg
+out.bmp

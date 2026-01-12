@@ -1,5 +1,76 @@
-BMP Image Processor
-This C-based utility performs pixel-level manipulation on 24-bit uncompressed BMP images. It serves as a foundation for understanding binary file structures, metadata handling, and digital image processing.
+# BMP Image Processor
 
-Project Overview
-The application opens a source Bitmap (BMP) file, parses its headers to ensure compatibility, and iterates through the pixel data to apply conditional color changes. The current implementation identifies specific color values and replaces them during the copy process.
+A professional C-based utility for pixel-level manipulation of 24-bit uncompressed BMP images. This tool allows you to copy, resize, filter, and even recover images from raw data.
+
+## Features
+
+- **Copy**: Exact bitwise copy of BMP files.
+- **Resize**: Scale BMP images by a specified integer factor.
+- **Filter-Red**: A specialized filter that replaces pure red pixels with white.
+- **Recover**: Recover JPEG images from a raw binary dump (e.g., memory card images).
+
+## Project Structure
+
+- `src/`: Source code modules.
+- `include/`: Header files defining BMP structures and utility interfaces.
+- `Makefile`: Build instructions using standard Make.
+- `CMakeLists.txt`: Modern CMake build configuration.
+- `.github/workflows/`: Continuous Integration setup.
+
+## Getting Started
+
+### Prerequisites
+
+- A C compiler (e.g., `gcc`, `clang`)
+- `make` or `cmake`
+
+### Building
+
+Using Make:
+```bash
+make
+```
+
+Using CMake:
+```bash
+mkdir build
+cd build
+cmake ..
+make
+```
+
+### Usage
+
+```bash
+./bmp-processor <command> [args]
+```
+
+#### Commands:
+
+- **Copy**:
+  ```bash
+  ./bmp-processor copy input.bmp output.bmp
+  ```
+
+- **Resize**:
+  ```bash
+  ./bmp-processor resize 2 input.bmp output.bmp
+  ```
+
+- **Filter-Red**:
+  ```bash
+  ./bmp-processor filter-red input.bmp output.bmp
+  ```
+
+- **Recover**:
+  ```bash
+  ./bmp-processor recover card.raw
+  ```
+
+## Development
+
+The project is structured to be modular. BMP logic is isolated in `src/bmp_utils.c` and can be easily extended with new filters or transformations.
+
+## License
+
+This project is open-source and available under the MIT License.
