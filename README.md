@@ -99,14 +99,14 @@ A Python script is provided in `scripts/analyze_colors.py` to generate histogram
 ```bash
 python scripts/analyze_colors.py input.bmp
 ```
-This will generate a `color_analysis.png` showing the frequency of each color value (0-255).
+This will generate a `color_analysis.png`. Below is an example of the output:
+
+![Color Distribution](docs/images/color_distribution.png)
 
 ### 3. Image Transformation (Demo)
-The `filter-red` command transforms specific pixel values. Below is a conceptual representation of the pixel-level modification:
+The `filter-red` command transforms specific pixel values. The image below demonstrates the "Original vs Filtered" result:
 
-| Original State | Transformation | Filtered State |
-| :--- | :---: | :--- |
-| ![Original](docs/images/bmp_demo_original.png) | `RGB(255,0,0) -> RGB(255,255,255)` | ![Filtered](docs/images/bmp_demo_filtered.png) |
+![Filter Comparison](docs/images/filter_comparison.png)
 
 ## Development
 
